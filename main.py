@@ -1,4 +1,4 @@
-import pygame, player  
+import pygame, player, utils  
 
 pygame.init()
 
@@ -6,6 +6,8 @@ display_width = 512
 display_height = 512
 tile_width = 20
 tile_height = 20
+columns = 12
+rows = 12
 # This sets the margin between each cell
 MARGIN = 5
 
@@ -33,11 +35,11 @@ player.setPlayerY(0 + MARGIN)
 # Create a 2 dimensional array. A two dimensional
 # array is simply a list of lists.
 grid = []
-for row in range(10):
+for row in range(columns):
     # Add an empty array that will hold each cell
     # in this row
     grid.append([])
-    for column in range(10):
+    for column in range(rows):
         grid[row].append(0)  # Append a cell
 
 
@@ -76,8 +78,8 @@ while player.isAlive():
     gameDisplay.fill(green)
  
     # Draw the grid
-    for row in range(10):
-        for column in range(10):
+    for row in range(columns):
+        for column in range(rows):
             color = red
             pygame.draw.rect(gameDisplay,
                              color,
