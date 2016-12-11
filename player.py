@@ -19,8 +19,29 @@ def update():
 
 
 def setPlayerX(x):
+    global playerX
     playerX = x
 
 
 def setPlayerY(y):
-    playerY = y   
+    global playerY    
+    playerY = y
+
+def offsetPlayerX(x):
+    global playerX
+    playerX += x
+
+
+def offsetPlayerY(y):
+    global playerY
+    playerY += y    
+
+def getPlayerX():
+    global playerX    
+    return playerX
+
+
+def getPlayerY():
+    global playerY    
+    return playerY  
+    
