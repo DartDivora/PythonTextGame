@@ -6,8 +6,8 @@ display_width = 512
 display_height = 512
 tile_width = 20
 tile_height = 20
-columns = 12
-rows = 12
+columns = 5
+rows = 6
 # This sets the margin between each cell
 MARGIN = 5
 
@@ -24,12 +24,28 @@ clock= pygame.time.Clock()
 playerImage = pygame.image.load('sprites/player.png')
 playerImage = pygame.transform.scale(playerImage, (tile_width, tile_height))
 
-def updatePlayer(x,y):
-    gameDisplay.blit(playerImage,(x,y))
+def updatePlayer():
+    pixelX = (MARGIN + tile_width) * player.getPlayerX() + MARGIN
+    pixelY = (MARGIN + tile_width) * player.getPlayerY() + MARGIN
+    gameDisplay.blit(playerImage,(pixelX,pixelY))
 def updateText(x,y):
     gameDisplay.blit(text, textpos)
-player.setPlayerX(0 + MARGIN)
-player.setPlayerY(0 + MARGIN)
+def playerCollision(offsetX,offsetY):
+    x = player.getPlayerX() + offsetX
+    y = player.getPlayerY() + offsetY
+    print(x)
+    print(y)
+    if x > -1 and x <= (rows - 1) and offsetX != 0:
+        player.offsetPlayerX(offsetX)
+        return True
+    elif y > -1 and y <= (columns - 1) and offsetY != 0:
+        player.offsetPlayerY(offsetY)
+        return True    
+    else:
+        return False
+    
+player.setPlayerX(0)
+player.setPlayerY(0)
 
  
 # Create a 2 dimensional array. A two dimensional
@@ -61,13 +77,13 @@ while player.isAlive():
         if event.type == pygame.KEYDOWN:
             #maybe change these to offsets...
             if event.key == pygame.K_LEFT:
-                player.offsetPlayerX(-1 * (tile_width + MARGIN))
+                playerCollision(-1,0)
             elif event.key == pygame.K_RIGHT:
-                player.offsetPlayerX(tile_width + MARGIN)
+                playerCollision(1,0)
             elif event.key == pygame.K_UP:
-                player.offsetPlayerY(-1 * (tile_height + MARGIN))
+                playerCollision(0,-1)
             elif event.key == pygame.K_DOWN:
-                player.offsetPlayerY(tile_height + MARGIN)
+                playerCollision(0,1)
                 
          
         #print(event)
@@ -87,8 +103,9 @@ while player.isAlive():
                               (MARGIN + tile_height) * row + MARGIN,
                               tile_width,
                               tile_height])
+            
     #update
-    updatePlayer(player.getPlayerX(),player.getPlayerY())
+    updatePlayer()
     updateText(0,0)            
     
     pygame.display.flip()
