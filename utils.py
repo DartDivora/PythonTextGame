@@ -1,6 +1,6 @@
 import random, json
 
-debug = True
+debug = False
 
 def debugPrint(text):
     if debug:
@@ -12,14 +12,15 @@ def randomWord(words):
     return random_word
 
 def randomDescription():
-    description = "you enter into a " + randomWord(adjectives) + " " + randomWord(rooms)
+    description = "You enter into a " + randomWord(adjectives) + " " + randomWord(rooms) + "."
     debugPrint(description)
+    return description
 
-def Rand_Num_Gen(Min,Max):
+def rand_num_gen(Min,Max):
     #Generates random number from a range of 2 numbers passed into the function
-    Random_Number = random.randint(Min,Max)
-    debugPrint(Random_Number)
-    return Random_Number        
+    random_number = random.randint(Min,Max)
+    debugPrint(random_number)
+    return random_number        
 
 with open('files/words.json') as wordsFile:    
     wordsJSON = json.load(wordsFile)
