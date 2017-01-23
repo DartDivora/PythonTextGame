@@ -1,4 +1,4 @@
-import pygame, player, utils, time  
+import pygame, player, utils, time, enemy  
 
 pygame.init()
 
