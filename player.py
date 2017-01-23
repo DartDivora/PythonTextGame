@@ -1,7 +1,10 @@
 alive = True
 playerX = 0
 playerY = 0
+player_name = ""
 
+player_name = input("What is your name?\n:")
+print(player_name)   
 
 def isAlive():
     #print("Player is currently: " + str(alive))
