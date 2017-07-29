@@ -1,4 +1,4 @@
-import pygame, player, utils, time, enemy  
+import pygame, player, utils, time
 
 pygame.init()
 
@@ -36,7 +36,7 @@ def updateText(x,y):
     textpos = text.get_rect()
     textpos.centerx = background.get_rect().centerx
     background.blit(text, textpos)
-    gameDisplay.blit(text, textpos)    
+    gameDisplay.blit(text, textpos)
 def playerCollision(offsetX,offsetY):
     x = player.getPlayerX() + offsetX
     y = player.getPlayerY() + offsetY
@@ -53,14 +53,14 @@ def playerCollision(offsetX,offsetY):
         return True
     elif y > -1 and y <= (columns - 1) and offsetY != 0:
         player.offsetPlayerY(offsetY)
-        return True    
+        return True
     else:
         return False
-    
+
 player.setPlayerX(0)
 player.setPlayerY(0)
 
- 
+
 # Create a 2 dimensional array. A two dimensional
 # array is simply a list of lists.
 grid = [[0 for x in range(columns)] for y in range(rows)]
@@ -71,7 +71,7 @@ for i in range(rows):
         #Generates a random number for the grid value. Currently being used
         # as a rudimentary monster spawner.
         grid[i][j] = utils.rand_num_gen(0,1)
-        #Generates the description 
+        #Generates the description
         if i == 0 and j == 0:
             gridData[str(i) + "," + str(j)] = "Welcome to the Dungeon, my dude."
             #Having a monster on the starting square would be bad news...
@@ -102,15 +102,15 @@ while player.isAlive():
                 playerCollision(0,-1)
             elif event.key == pygame.K_DOWN:
                 playerCollision(0,1)
-                
-         
+
+
         #print(event)
 
 
 
     # Set the screen background
     gameDisplay.fill(green)
- 
+
     # Draw the grid
     for row in range(columns):
         for column in range(rows):
@@ -119,26 +119,21 @@ while player.isAlive():
             elif grid[column][row] == 1:
                 color = blue
             elif grid[column][row] == 2:
-                color = white                
+                color = white
             pygame.draw.rect(gameDisplay,
                              color,
                              [(MARGIN + tile_width) * column + MARGIN,
                               (MARGIN + tile_height) * row + MARGIN,
                               tile_width,
                               tile_height])
-            
+
     #update
+    updateText(0,0)
     updatePlayer()
-    updateText(0,0)            
-    
     pygame.display.flip()
     #pygame.display.update()
-    player.update()
     #FPS is set here!
     clock.tick(60)
 
 pygame.quit()
 quit()
-            
-
-

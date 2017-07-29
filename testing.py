@@ -1,6 +1,6 @@
 import random, json
 
-with open('files/words.json') as wordsFile:    
+with open('files/words.json') as wordsFile:
     wordsJSON = json.load(wordsFile)
 adjectives = wordsJSON["adjectives"].split("|")
 rooms = wordsJSON["rooms"].split("|")
@@ -13,5 +13,3 @@ def randomWord(words):
     return random_word
 
 print("you enter into a " + randomWord(adjectives) + " " + randomWord(rooms))
-
-

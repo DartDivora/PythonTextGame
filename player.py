@@ -1,10 +1,10 @@
 alive = True
 playerX = 0
 playerY = 0
-player_name = ""
+player_name = "Johnny Biscuits"
 
-player_name = input("What is your name?\n:")
-print(player_name)   
+#player_name = input("What is your name?\n:")
+print(player_name)
 
 def isAlive():
     #print("Player is currently: " + str(alive))
@@ -27,7 +27,7 @@ def setPlayerX(x):
 
 
 def setPlayerY(y):
-    global playerY    
+    global playerY
     playerY = y
 
 def offsetPlayerX(x):
@@ -37,14 +37,13 @@ def offsetPlayerX(x):
 
 def offsetPlayerY(y):
     global playerY
-    playerY += y    
+    playerY += y
 
 def getPlayerX():
-    global playerX    
+    global playerX
     return playerX
 
 
 def getPlayerY():
-    global playerY    
-    return playerY  
-    
+    global playerY
+    return playerY
