@@ -1,40 +1,43 @@
-import pygame, time
+import pygame, time, TextAdventureStrings
+
+def updateText():
+    textToDisplay = ""
+    for tup in currentText:
+        if tup[0] != 0:
+            textToDisplay += str(tup[0]) + ": "
+        textToDisplay += tup[1] + "\n"
+
+    text = font.render(textToDisplay, 1, getColor("white"))
+    textpos = text.get_rect()
+    textpos.centerx = background.get_rect().centerx
+    background.blit(text, textpos)
+    gameDisplay.blit(text, textpos)
+
+def getConfig(key):
+    return TextAdventureStrings.config[key]
+
+def getColor(key):
+    return TextAdventureStrings.colors[key]
+
+def getDialog(key):
+    return TextAdventureStrings.dialog[key]
 
 pygame.init()
 
 isAlive = True
-display_width = 512
-display_height = 512
-tile_width = 20
-tile_height = 20
-columns = 5
-rows = 6
-# This sets the margin between each cell
-MARGIN = 5
-
-#colors are a tuple with RGB values
-black = (0,0,0)
-white = (255,255,255)
-red = (255,0,0)
-green = (0,255,0)
-blue = (0,0,255)
+display_width = getConfig("display_width")
+display_height = getConfig("display_height")
+currentText = TextAdventureStrings.dialog["Billy"]
 
 #Display Settings and clock...
 gameDisplay = pygame.display.set_mode((display_width,display_height))
 pygame.display.set_caption("Text Adventure game!")
 clock= pygame.time.Clock()
 
-def updateText(x,y):
-    text = font.render("hello", 1, white)
-    textpos = text.get_rect()
-    textpos.centerx = background.get_rect().centerx
-    background.blit(text, textpos)
-    gameDisplay.blit(text, textpos)
-
 # Fill background
 background = pygame.Surface(gameDisplay.get_size())
 background = background.convert()
-background.fill((250, 250, 250))
+background.fill(getColor("black"))
 # Display some text
 font = pygame.font.Font(None, 36)
 
@@ -46,14 +49,22 @@ while isAlive:
             if event.key == pygame.K_ESCAPE:
                 print("Exiting the game!")
                 isAlive = False
+            elif event.key == pygame.K_1:
+                print("pressed 1")
+            elif event.key == pygame.K_2:
+                print("pressed 2")
+            elif event.key == pygame.K_2:
+                print("pressed 3")
+            elif event.key == pygame.K_2:
+                print("pressed 4")
     # Set the screen background
-    gameDisplay.fill(black)
+    gameDisplay.fill(getColor("black"))
     #update
-    updateText(0,0)
+    updateText()
     pygame.display.flip()
     #pygame.display.update()
     #FPS is set here!
-    clock.tick(60)
+    clock.tick(getConfig("FPS"))
 
 pygame.quit()
 quit()
