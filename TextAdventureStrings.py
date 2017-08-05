@@ -15,5 +15,5 @@ config = {
 }
 
 dialog = {
-    "Billy": [(0,"Welcome to the world! Please select something!"),(1,"Go Forth!"),(2,"Run Away!")]
+    "GameMaster": [(0,"Welcome to the world! Please select something!"),(1,"Go Forth!"),(2,"Run Away!")]
 }
