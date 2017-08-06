@@ -1,4 +1,4 @@
-    # colors are a tuple with RGB values
+# colors are a tuple with RGB values
 colors = {
     "black": (0, 0, 0),
     "white": (255, 255, 255),
@@ -15,5 +15,14 @@ config = {
 }
 
 dialog = {
-    "GameMaster": [(0,"Welcome to the world! Please select something!"),(1,"Go Forth!"),(2,"Run Away!")]
+    "1": "Welcome to the game!"
+}
+
+dialog_options = {
+    "1": "Go forth",
+    "2": "Something else"
+}
+
+npc = {
+    "GameMaster": ("1", "1", "2")
 }

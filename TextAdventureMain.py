@@ -32,15 +32,21 @@ def getColor(key):
 
 def getCurrentText():
     textToDisplay = ""
+    counter = 0
     for tup in currentText:
-        if tup[0] != 0:
-            textToDisplay += str(tup[0]) + ": "
-        textToDisplay += tup[1] + "\n"
+        if counter == 0:
+            textToDisplay += getDialog(tup) + ": \n"
+        else:
+            textToDisplay += str(counter) + ": " + getDialogOptions(tup) + "\n"
+        counter += 1
     return textToDisplay
 
 
 def getDialog(key):
     return TextAdventureStrings.dialog[key]
+
+def getDialogOptions(key):
+    return TextAdventureStrings.dialog_options[key]
 
 
 def processInput(keyPressed):
@@ -62,7 +68,7 @@ pygame.init()
 isAlive = True
 display_width = getConfig("display_width")
 display_height = getConfig("display_height")
-currentText = TextAdventureStrings.dialog["GameMaster"]
+currentText = TextAdventureStrings.npc["GameMaster"]
 
 # Display Settings and clock...
 gameDisplay = pygame.display.set_mode((display_width, display_height))
