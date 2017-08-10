@@ -31,13 +31,13 @@ def getColor(key):
 
 
 def getCurrentText():
-    textToDisplay = ""
     counter = 0
-    for tup in currentText:
+    for tup in getDialogOptions(currentText):
         if counter == 0:
-            textToDisplay += getDialog(tup) + ": \n"
+            textToDisplay = getDialog(tup) + "\n"
         else:
-            textToDisplay += str(counter) + ": " + getDialogOptions(tup) + "\n"
+            textToDisplay += "     " + \
+                str(counter) + ": " + getDialog(tup) + "\n"
         counter += 1
     return textToDisplay
 
@@ -45,22 +45,36 @@ def getCurrentText():
 def getDialog(key):
     return TextAdventureStrings.dialog[key]
 
+
 def getDialogOptions(key):
     return TextAdventureStrings.dialog_options[key]
 
 
 def processInput(keyPressed):
+    global isAlive
     if keyPressed == pygame.K_ESCAPE:
         print("Exiting the game!")
         isAlive = False
     elif keyPressed == pygame.K_1:
-        print("pressed 1")
+        optionPressed(1)
     elif keyPressed == pygame.K_2:
-        print("pressed 2")
+        optionPressed(2)
     elif keyPressed == pygame.K_3:
-        print("pressed 3")
+        optionPressed(3)
     elif keyPressed == pygame.K_4:
-        print("pressed 4")
+        optionPressed(4)
+
+
+def optionPressed(number):
+    global currentText, isAlive
+    dialogTup = getDialogOptions(currentText)
+    if len(dialogTup) >= number:
+        choice = dialogTup[number]
+        if choice == "Exit":
+            print("Exiting the game!")
+            isAlive = False
+        else:
+            currentText = choice
 
 
 pygame.init()
@@ -95,7 +109,7 @@ while isAlive:
     pygame.display.flip()
     # pygame.display.update()
     # FPS is set here!
-    clock.tick(getConfig("FPS"))
+    clock.tick(getConfig("FPS") * 1000)
 
 
 pygame.quit()

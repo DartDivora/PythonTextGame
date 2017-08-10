@@ -15,14 +15,30 @@ config = {
 }
 
 dialog = {
-    "1": "Welcome to the game!"
+    "1": "Welcome to T E X T B O Y S",
+    "2": "Go forth!",
+    "3": "You find yourself in a forest clearing. Where would you like to go?",
+    "4": "Grassy Plains",
+    "5": "Friendly Forest",
+    "6": "Clumpy Cliffs",
+    "7": "Town",
+    "Exit": "Exit"
 }
 
+"""
+In the dialog_options, the tuple represents the following in order:
+[0] - Dialog line
+[1+] - Dialog options
+"""
 dialog_options = {
-    "1": "Go forth",
-    "2": "Something else"
+    "1": ("1", "2", "Exit"),
+    "2": ("3", "4", "5", "6", "7"),
+    "4": ("4", "Exit"),
+    "5": ("5", "Exit"),
+    "6": ("6", "Exit"),
+    "7": ("7", "Exit")
 }
 
 npc = {
-    "GameMaster": ("1", "1", "2")
+    "GameMaster": ("1")
 }
