@@ -1,6 +1,7 @@
 import pygame
 import time
 import TextAdventureStrings
+from random import randint
 
 
 def updateText(surface, text, pos, font, color=pygame.Color('black')):
@@ -73,9 +74,40 @@ def optionPressed(number):
         if choice == "Exit":
             print("Exiting the game!")
             isAlive = False
+        elif choice == "Fight":
+            print("You are having a fight!")
+            fight()
         else:
             currentText = choice
 
+
+#Temp method for testing
+def fight():
+    global currentText, isAlive
+    previousText = currentText
+    enemyHP = 20
+    enemyAttack = 1
+    enemyDefense = 0
+    playerHP = 20
+    playerAttack = 4
+    playerDefense = 0
+    fighting = True
+
+    while fighting:
+        playerDamage = randint(0,playerAttack) - enemyDefense
+        if playerDamage > 0:
+            enemyHP = enemyHP - playerDamage
+        enemyDamage = randint(0,enemyAttack) - playerDefense
+        if enemyDamage > 0:
+            playerHP = playerHP - enemyDamage
+        if playerHP <= 0:
+            isAlive = False
+            print("You died, son...")
+            fighting = False
+            return
+        elif enemyHP <= 0:
+            print("You win!")
+            fighting = False
 
 pygame.init()
 

@@ -22,6 +22,7 @@ dialog = {
     "5": "Friendly Forest",
     "6": "Clumpy Cliffs",
     "7": "Town",
+    "Fight": "Fight!",
     "Exit": "Exit"
 }
 
@@ -33,7 +34,7 @@ In the dialog_options, the tuple represents the following in order:
 dialog_options = {
     "1": ("1", "2", "Exit"),
     "2": ("3", "4", "5", "6", "7"),
-    "4": ("4", "Exit"),
+    "4": ("4", "Fight","Exit"),
     "5": ("5", "Exit"),
     "6": ("6", "Exit"),
     "7": ("7", "Exit")
