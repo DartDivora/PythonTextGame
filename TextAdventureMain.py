@@ -2,6 +2,7 @@ import pygame
 import time
 import TextAdventureStrings
 from random import randint
+from Player import Player
 
 
 def updateText(surface, text, pos, font, color=pygame.Color('black')):
@@ -67,13 +68,13 @@ def processInput(keyPressed):
 
 
 def optionPressed(number):
-    global currentText, isAlive
+    global currentText, player
     dialogTup = getDialogOptions(currentText)
     if len(dialogTup) >= number:
         choice = dialogTup[number]
         if choice == "Exit":
             print("Exiting the game!")
-            isAlive = False
+            player.isAlive = False
         elif choice == "Fight":
             print("You are having a fight!")
             fight()
@@ -83,25 +84,22 @@ def optionPressed(number):
 
 #Temp method for testing
 def fight():
-    global currentText, isAlive
+    global currentText, isAlive, player
     previousText = currentText
     enemyHP = 20
     enemyAttack = 1
     enemyDefense = 0
-    playerHP = 20
-    playerAttack = 4
-    playerDefense = 0
     fighting = True
 
     while fighting:
-        playerDamage = randint(0,playerAttack) - enemyDefense
+        playerDamage = randint(0,player.attack) - enemyDefense
         if playerDamage > 0:
             enemyHP = enemyHP - playerDamage
-        enemyDamage = randint(0,enemyAttack) - playerDefense
+        enemyDamage = randint(0,enemyAttack) - player.defense
         if enemyDamage > 0:
-            playerHP = playerHP - enemyDamage
-        if playerHP <= 0:
-            isAlive = False
+            player.HP = player.HP - enemyDamage
+        if player.HP <= 0:
+            player.isAlive = False
             print("You died, son...")
             fighting = False
             return
@@ -115,6 +113,7 @@ isAlive = True
 display_width = getConfig("display_width")
 display_height = getConfig("display_height")
 currentText = TextAdventureStrings.npc["GameMaster"]
+player = Player()
 
 # Display Settings and clock...
 gameDisplay = pygame.display.set_mode((display_width, display_height))
@@ -128,10 +127,10 @@ background.fill(getColor("black"))
 # Display some text
 font = pygame.font.Font(None, 36)
 
-while isAlive:
+while player.isAlive:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            isAlive = False
+            player.isAlive = False
         if event.type == pygame.KEYDOWN:
             processInput(event.key)
     # Set the screen background
