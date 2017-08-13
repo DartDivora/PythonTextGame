@@ -23,7 +23,8 @@ dialog = {
     "6": "Clumpy Cliffs",
     "7": "Town",
     "Fight": "Fight!",
-    "Exit": "Exit"
+    "Exit": "Exit",
+    "Back": "Back"
 }
 
 """
@@ -32,12 +33,12 @@ In the dialog_options, the tuple represents the following in order:
 [1+] - Dialog options
 """
 dialog_options = {
-    "1": ("1", "2", "Exit"),
+    "1": ("1", "2"),
     "2": ("3", "4", "5", "6", "7"),
-    "4": ("4", "Fight","Exit"),
-    "5": ("5", "Exit"),
-    "6": ("6", "Exit"),
-    "7": ("7", "Exit")
+    "4": ("4", "Fight","Back","Exit"),
+    "5": ("5","Back", "Exit"),
+    "6": ("6","Back", "Exit"),
+    "7": ("7","Back", "Exit")
 }
 
 npc = {

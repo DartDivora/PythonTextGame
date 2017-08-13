@@ -32,9 +32,12 @@ def getColor(key):
     return TextAdventureStrings.colors[key]
 
 
+def getDialog(key):
+    return TextAdventureStrings.dialog[key]
+
 def getCurrentText():
     counter = 0
-    for tup in getDialogOptions(currentText):
+    for tup in getDialogOptions(player.currentText):
         if counter == 0:
             textToDisplay = getDialog(tup) + "\n"
         else:
@@ -44,19 +47,14 @@ def getCurrentText():
     return textToDisplay
 
 
-def getDialog(key):
-    return TextAdventureStrings.dialog[key]
-
-
 def getDialogOptions(key):
     return TextAdventureStrings.dialog_options[key]
 
 
 def processInput(keyPressed):
-    global isAlive
     if keyPressed == pygame.K_ESCAPE:
         print("Exiting the game!")
-        isAlive = False
+        player.isAlive = False
     elif keyPressed == pygame.K_1:
         optionPressed(1)
     elif keyPressed == pygame.K_2:
@@ -65,11 +63,13 @@ def processInput(keyPressed):
         optionPressed(3)
     elif keyPressed == pygame.K_4:
         optionPressed(4)
+    elif keyPressed == pygame.K_5:
+        optionPressed(5)
 
 
 def optionPressed(number):
-    global currentText, player
-    dialogTup = getDialogOptions(currentText)
+    global player
+    dialogTup = getDialogOptions(player.currentText)
     if len(dialogTup) >= number:
         choice = dialogTup[number]
         if choice == "Exit":
@@ -78,24 +78,28 @@ def optionPressed(number):
         elif choice == "Fight":
             print("You are having a fight!")
             fight()
+        elif choice == "Stats":
+            player.setCurrentText("Stats")
+        elif choice == "Back":
+            player.goBack()
         else:
-            currentText = choice
+            print(player.previousText)
+            player.setCurrentText(choice)
 
 
-#Temp method for testing
+# Temp method for testing
 def fight():
-    global currentText, isAlive, player
-    previousText = currentText
+    global isAlive, player
     enemyHP = 20
     enemyAttack = 1
     enemyDefense = 0
     fighting = True
 
     while fighting:
-        playerDamage = randint(0,player.attack) - enemyDefense
+        playerDamage = randint(0, player.attack) - enemyDefense
         if playerDamage > 0:
             enemyHP = enemyHP - playerDamage
-        enemyDamage = randint(0,enemyAttack) - player.defense
+        enemyDamage = randint(0, enemyAttack) - player.defense
         if enemyDamage > 0:
             player.HP = player.HP - enemyDamage
         if player.HP <= 0:
@@ -107,12 +111,13 @@ def fight():
             print("You win!")
             fighting = False
 
+
 pygame.init()
 
 isAlive = True
 display_width = getConfig("display_width")
 display_height = getConfig("display_height")
-currentText = TextAdventureStrings.npc["GameMaster"]
+#currentText = TextAdventureStrings.npc["GameMaster"]
 player = Player()
 
 # Display Settings and clock...
