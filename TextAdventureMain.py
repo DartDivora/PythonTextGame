@@ -3,6 +3,7 @@ import time
 import TextAdventureStrings
 from random import randint
 from Player import Player
+from Enemy import Enemy
 
 
 def updateText(surface, text, pos, font, color=pygame.Color('black')):
@@ -89,17 +90,15 @@ def optionPressed(number):
 
 # Temp method for testing
 def fight():
-    global isAlive, player
-    enemyHP = 20
-    enemyAttack = 1
-    enemyDefense = 0
+    global player
+    enemy = Enemy()
     fighting = True
 
     while fighting:
-        playerDamage = randint(0, player.attack) - enemyDefense
+        playerDamage = randint(0, player.attack) - enemy.defense
         if playerDamage > 0:
-            enemyHP = enemyHP - playerDamage
-        enemyDamage = randint(0, enemyAttack) - player.defense
+            enemy.HP = enemy.HP - playerDamage
+        enemyDamage = randint(0, enemy.attack) - player.defense
         if enemyDamage > 0:
             player.HP = player.HP - enemyDamage
         if player.HP <= 0:
@@ -107,14 +106,12 @@ def fight():
             print("You died, son...")
             fighting = False
             return
-        elif enemyHP <= 0:
+        elif enemy.HP <= 0:
             print("You win!")
             fighting = False
 
 
 pygame.init()
-
-isAlive = True
 display_width = getConfig("display_width")
 display_height = getConfig("display_height")
 #currentText = TextAdventureStrings.npc["GameMaster"]
