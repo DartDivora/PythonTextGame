@@ -22,7 +22,10 @@ dialog = {
     "5": "Friendly Forest",
     "6": "Clumpy Cliffs",
     "7": "Town",
+    "8": "You are fighting a wild Beefsteak!",
     "Fight": "Fight!",
+    "Attack": "Attack!",
+    "Defend": "Defend!",
     "Exit": "Exit",
     "Back": "Back"
 }
@@ -38,7 +41,8 @@ dialog_options = {
     "4": ("4", "Fight","Back","Exit"),
     "5": ("5","Back", "Exit"),
     "6": ("6","Back", "Exit"),
-    "7": ("7","Back", "Exit")
+    "7": ("7","Back", "Exit"),
+    "8": ("8","Attack","Back")
 }
 
 npc = {

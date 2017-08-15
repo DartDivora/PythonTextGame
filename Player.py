@@ -8,6 +8,7 @@ class Player:
     defense = 0
     money = 0
     isAlive = True
+    isFighting = False
     currentText = TextAdventureStrings.npc["GameMaster"]
     previousText = []
 

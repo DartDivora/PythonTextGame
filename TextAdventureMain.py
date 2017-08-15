@@ -76,9 +76,15 @@ def optionPressed(number):
         if choice == "Exit":
             print("Exiting the game!")
             player.isAlive = False
+        elif choice == "Attack":
+            if player.isFighting:
+                fight()
+            else:
+                goBack()
         elif choice == "Fight":
             print("You are having a fight!")
-            fight()
+            player.isFighting = True
+            player.setCurrentText("8")
         elif choice == "Stats":
             player.setCurrentText("Stats")
         elif choice == "Back":
@@ -87,28 +93,24 @@ def optionPressed(number):
             print(player.previousText)
             player.setCurrentText(choice)
 
-
-# Temp method for testing
 def fight():
-    global player
-    enemy = Enemy()
-    fighting = True
-
-    while fighting:
-        playerDamage = randint(0, player.attack) - enemy.defense
-        if playerDamage > 0:
-            enemy.HP = enemy.HP - playerDamage
-        enemyDamage = randint(0, enemy.attack) - player.defense
-        if enemyDamage > 0:
-            player.HP = player.HP - enemyDamage
-        if player.HP <= 0:
-            player.isAlive = False
-            print("You died, son...")
-            fighting = False
-            return
-        elif enemy.HP <= 0:
-            print("You win!")
-            fighting = False
+    global player, enemy
+    if not enemy:
+        enemy = Enemy()
+    playerDamage = randint(0, player.attack) - enemy.defense
+    if playerDamage > 0:
+        enemy.HP = enemy.HP - playerDamage
+    enemyDamage = randint(0, enemy.attack) - player.defense
+    if enemyDamage > 0:
+        player.HP = player.HP - enemyDamage
+    if player.HP <= 0:
+        player.isAlive = False
+        print("You died, son...")
+        fighting = False
+        return
+    elif enemy.HP <= 0:
+        print("You win!")
+        fighting = False
 
 
 pygame.init()
@@ -116,7 +118,7 @@ display_width = getConfig("display_width")
 display_height = getConfig("display_height")
 #currentText = TextAdventureStrings.npc["GameMaster"]
 player = Player()
-
+enemy = Enemy()
 # Display Settings and clock...
 gameDisplay = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption("Text Adventure game!")
