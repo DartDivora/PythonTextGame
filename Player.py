@@ -2,7 +2,7 @@ import TextAdventureStrings
 
 
 class Player:
-    currentLocation = 1
+    currentLocation = "1"
     HP = 20
     attack = 4
     defense = 0

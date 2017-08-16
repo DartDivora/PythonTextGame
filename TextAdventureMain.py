@@ -2,6 +2,7 @@ import pygame
 import time
 import TextAdventureStrings
 from random import randint
+from random import choice
 from Player import Player
 from Enemy import Enemy
 
@@ -35,6 +36,9 @@ def getColor(key):
 
 def getDialog(key):
     return TextAdventureStrings.dialog[key]
+
+def getLocation(key):
+    return TextAdventureStrings.locations[key]
 
 def getCurrentText():
     counter = 0
@@ -71,11 +75,14 @@ def processInput(keyPressed):
 def optionPressed(number):
     global player
     dialogTup = getDialogOptions(player.currentText)
-    if len(dialogTup) >= number:
+    if (len(dialogTup) - 1) >= number:
         choice = dialogTup[number]
         if choice == "Exit":
             print("Exiting the game!")
             player.isAlive = False
+        elif choice == "Explore":
+            #Replace with random choice
+            player.setCurrentText(TextAdventureStrings.events[player.currentLocation][0])
         elif choice == "Attack":
             if player.isFighting:
                 fight()
@@ -92,6 +99,7 @@ def optionPressed(number):
         else:
             print(player.previousText)
             player.setCurrentText(choice)
+
 
 def fight():
     global player, enemy
@@ -110,6 +118,7 @@ def fight():
         return
     elif enemy.HP <= 0:
         print("You win!")
+        player.money = player.money + enemy.money
         fighting = False
 
 
@@ -135,7 +144,7 @@ while player.isAlive:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             player.isAlive = False
-        if event.type == pygame.KEYDOWN:
+        elif event.type == pygame.KEYDOWN:
             processInput(event.key)
     # Set the screen background
     gameDisplay.fill(getColor("black"))

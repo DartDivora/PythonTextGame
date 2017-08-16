@@ -23,9 +23,11 @@ dialog = {
     "6": "Clumpy Cliffs",
     "7": "Town",
     "8": "You are fighting a wild Beefsteak!",
+    "9": "You see some friendly chipmunks.",
     "Fight": "Fight!",
     "Attack": "Attack!",
     "Defend": "Defend!",
+    "Explore": "Explore!",
     "Exit": "Exit",
     "Back": "Back"
 }
@@ -38,11 +40,21 @@ In the dialog_options, the tuple represents the following in order:
 dialog_options = {
     "1": ("1", "2"),
     "2": ("3", "4", "5", "6", "7"),
-    "4": ("4", "Fight","Back","Exit"),
-    "5": ("5","Back", "Exit"),
-    "6": ("6","Back", "Exit"),
-    "7": ("7","Back", "Exit"),
-    "8": ("8","Attack","Back")
+    "4": ("4", "Fight", "Back", "Exit"),
+    "5": ("5", "Explore", "Back", "Exit"),
+    "6": ("6", "Back", "Exit"),
+    "7": ("7", "Back", "Exit"),
+    "8": ("8", "Attack", "Back"),
+    "9": ("9", "Back")
+}
+
+locations = {
+    "1": "Grassy Plains",
+    "2": "Friendly Forest"
+}
+
+events = {
+    "1": ("9", "2", "3")
 }
 
 npc = {
