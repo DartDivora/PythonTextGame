@@ -154,7 +154,7 @@ while player.isAlive:
     # pygame.display.update()
     # FPS is set here!
     clock.tick(getConfig("FPS") * 1000)
-
+    player.update()
 
 pygame.quit()
 quit()

@@ -24,3 +24,6 @@ class Player:
     def setCurrentText(self, dialogID):
         self.previousText.append(self.currentText)
         self.currentText = dialogID
+
+    def update(self):
+        print("stuff")
