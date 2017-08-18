@@ -24,6 +24,8 @@ dialog = {
     "7": "Town",
     "8": "You are fighting a wild Beefsteak!",
     "9": "You see some friendly chipmunks.",
+    "10": "You find some scorpions, but they do not really do anything.",
+    "11": "I do not even know",
     "Fight": "Fight!",
     "Attack": "Attack!",
     "Defend": "Defend!",
@@ -45,7 +47,9 @@ dialog_options = {
     "6": ("6", "Back", "Exit"),
     "7": ("7", "Back", "Exit"),
     "8": ("8", "Attack", "Back"),
-    "9": ("9", "Back")
+    "9": ("9", "Back"),
+    "10": ("10", "Back"),
+    "11": ("11", "Back")
 }
 
 locations = {
@@ -54,7 +58,7 @@ locations = {
 }
 
 events = {
-    "1": ("9", "2", "3")
+    "1": ("9", "10", "11")
 }
 
 npc = {

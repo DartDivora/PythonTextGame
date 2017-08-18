@@ -37,8 +37,10 @@ def getColor(key):
 def getDialog(key):
     return TextAdventureStrings.dialog[key]
 
+
 def getLocation(key):
     return TextAdventureStrings.locations[key]
+
 
 def getCurrentText():
     counter = 0
@@ -76,29 +78,30 @@ def optionPressed(number):
     global player
     dialogTup = getDialogOptions(player.currentText)
     if (len(dialogTup) - 1) >= number:
-        choice = dialogTup[number]
-        if choice == "Exit":
+        dialog_choice = dialogTup[number]
+        if dialog_choice == "Exit":
             print("Exiting the game!")
             player.isAlive = False
-        elif choice == "Explore":
-            #Replace with random choice
-            player.setCurrentText(TextAdventureStrings.events[player.currentLocation][0])
-        elif choice == "Attack":
+        elif dialog_choice == "Explore":
+            # Replace with random choice
+            choiceTuple = TextAdventureStrings.events[player.currentLocation]
+            player.setCurrentText(choice(choiceTuple))
+        elif dialog_choice == "Attack":
             if player.isFighting:
                 fight()
             else:
                 goBack()
-        elif choice == "Fight":
+        elif dialog_choice == "Fight":
             print("You are having a fight!")
             player.isFighting = True
             player.setCurrentText("8")
-        elif choice == "Stats":
+        elif dialog_choice == "Stats":
             player.setCurrentText("Stats")
-        elif choice == "Back":
+        elif dialog_choice == "Back":
             player.goBack()
         else:
             print(player.previousText)
-            player.setCurrentText(choice)
+            player.setCurrentText(dialog_choice)
 
 
 def fight():
