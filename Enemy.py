@@ -4,6 +4,7 @@ class Enemy:
     attack = 1
     defense = 0
     money = 5
+    exp = 5
     isAlive = True
 
     def printStats(self):

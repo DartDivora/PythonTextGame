@@ -59,6 +59,7 @@ def getDialogOptions(key):
 
 
 def processInput(keyPressed):
+    global music_playing, music_started
     if keyPressed == pygame.K_ESCAPE:
         print("Exiting the game!")
         player.isAlive = False
@@ -66,12 +67,23 @@ def processInput(keyPressed):
         optionPressed(1)
     elif keyPressed == pygame.K_2:
         optionPressed(2)
+
     elif keyPressed == pygame.K_3:
         optionPressed(3)
     elif keyPressed == pygame.K_4:
         optionPressed(4)
     elif keyPressed == pygame.K_5:
         optionPressed(5)
+    elif keyPressed == pygame.K_m:
+        if not music_started:
+            pygame.mixer.music.play(0)
+            music_started = True
+        elif music_playing:
+            pygame.mixer.music.pause()
+            music_playing = False
+        else:
+            pygame.mixer.music.unpause()
+            music_playing = True
 
 
 def optionPressed(number):
@@ -121,16 +133,20 @@ def fight():
         return
     elif enemy.HP <= 0:
         print("You win!")
-        player.money = player.money + enemy.money
+        player.money += enemy.money
+        player.exp += enemy.exp
         fighting = False
 
 
 pygame.init()
+pygame.mixer.music.load('music/Adventure.mp3')
 display_width = getConfig("display_width")
 display_height = getConfig("display_height")
 #currentText = TextAdventureStrings.npc["GameMaster"]
 player = Player()
 enemy = Enemy()
+music_started = False
+music_playing = True
 # Display Settings and clock...
 gameDisplay = pygame.display.set_mode((display_width, display_height))
 pygame.display.set_caption("Text Adventure game!")

@@ -2,6 +2,8 @@ import TextAdventureStrings
 
 
 class Player:
+    level = 1
+    exp = 50
     currentLocation = "1"
     HP = 20
     attack = 4
@@ -13,10 +15,12 @@ class Player:
     previousText = []
 
     def printStats(self):
-        text = "HP: " + self.HP + "\n"
-        text = "Attack: " + self.attack + "\n"
-        text = "Defense: " + self.defense + "\n"
-        text = "Money: " + self.money + "\n"
+        text = "HP: " + str(self.HP) + "\n"
+        text += "Attack: " + str(self.attack) + "\n"
+        text += "Defense: " + str(self.defense) + "\n"
+        text += "Money: " + str(self.money) + "\n"
+        print(text)
+        return text
 
     def goBack(self):
         self.currentText = self.previousText.pop()
@@ -25,5 +29,18 @@ class Player:
         self.previousText.append(self.currentText)
         self.currentText = dialogID
 
+    def levelUp(self):
+        self.attack += 1
+        self.defense = self.defense + 1
+        self.HP = self.HP + 5
+        self.level = self.level + 1
+        self.printStats()
+
+    def checkLevelUp(self):
+        if self.exp > (self.level * 25):
+            return True
+        return False
+
     def update(self):
-        print("stuff")
+        if self.checkLevelUp():
+            self.levelUp()
