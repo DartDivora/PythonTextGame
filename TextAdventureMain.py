@@ -6,6 +6,31 @@ from random import choice
 from Player import Player
 from Enemy import Enemy
 
+class TestSprite(pygame.sprite.Sprite):
+
+    def __init__(self):
+        super(TestSprite, self).__init__()
+        self.images = []
+        self.images.append(pygame.image.load('sprites/player1.png'))
+        self.images.append(pygame.image.load('sprites/player2.png'))
+        # assuming both images are 64x64 pixels
+
+        self.index = 0
+        self.fpsCounter = 0
+        self.image = self.images[self.index]
+        self.rect = pygame.Rect(0, 50, 1024, 1024)
+
+    def update(self):
+        self.fpsCounter += 1
+        '''This method iterates through the elements inside self.images and
+        displays the next one each tick. For a slower animation, you may want to
+        consider using a timer of some sort so it updates slower.'''
+        if self.fpsCounter >= 60:
+            self.fpsCounter = 0
+            self.index += 1
+            if self.index >= len(self.images):
+                self.index = 0
+            self.image = self.images[self.index]
 
 def updateText(surface, text, pos, font, color=pygame.Color('black')):
     # 2D array where each row is a list of words.
@@ -145,6 +170,8 @@ display_height = getConfig("display_height")
 #currentText = TextAdventureStrings.npc["GameMaster"]
 player = Player()
 enemy = Enemy()
+my_sprite = TestSprite()
+my_group = pygame.sprite.Group(my_sprite)
 music_started = False
 music_playing = True
 # Display Settings and clock...
@@ -168,6 +195,8 @@ while player.isAlive:
     # Set the screen background
     gameDisplay.fill(getColor("black"))
     # update
+    my_group.update()
+    my_group.draw(gameDisplay)
     updateText(gameDisplay, getCurrentText(), (0, 0), font, getColor("white"))
     pygame.display.flip()
     # pygame.display.update()
