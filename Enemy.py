@@ -1,10 +1,7 @@
-class Enemy:
+from Entity import Entity
+
+class Enemy(Entity):
     currentLocation = 1
-    HP = 20
-    attack = 1
-    defense = 0
-    money = 5
-    exp = 5
     isAlive = True
 
     def printStats(self):
