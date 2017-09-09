@@ -6,6 +6,8 @@ class Entity:
     attack = 4
     defense = 0
     money = 0
+    isAlive = True
+    currentLocation = "1"
 
     def printStats(self):
         text = "HP: " + str(self.HP) + "\n"

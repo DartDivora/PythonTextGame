@@ -3,8 +3,6 @@ from Entity import Entity
 
 
 class Player(Entity):
-    currentLocation = "1"
-    isAlive = True
     isFighting = False
     currentText = TextAdventureStrings.npc["GameMaster"]
     previousText = []
