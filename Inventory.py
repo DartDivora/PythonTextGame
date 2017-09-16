@@ -5,6 +5,7 @@ class Inventory:
         print("Inventory!")
 
 class Item:
-    def __init__(self):
+    def __init__(self, value, itemDesc):
         print("Item!")
-        self.desc = "This is an item!"
+        self.desc = itemDesc
+        self.value = value

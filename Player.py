@@ -1,11 +1,13 @@
 import TextAdventureStrings
 from Entity import Entity
+from Inventory import Inventory
 
 
 class Player(Entity):
     isFighting = False
     currentText = TextAdventureStrings.npc["GameMaster"]
     previousText = []
+    inventory = Inventory()
 
 
     def goBack(self):
