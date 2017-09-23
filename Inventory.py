@@ -1,5 +1,18 @@
 class Inventory:
-    items = []
+    equippedItems = {}
+    consumableItems = {}
+
+    def printInventory(self):
+        print("consumableItems: ")
+        printDict(consumableItems)
+        print("equippedItems: ")
+        printDict(equippedItems)
+
+    def printDict(self, dictToPrint):
+        for x in dictToPrint:
+            print (x)
+            for y in dictToPrint[x]:
+                print (y,':',dictToPrint[x][y])
 
     def __init__(self):
         print("Inventory!")
