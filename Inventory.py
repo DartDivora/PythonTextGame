@@ -18,12 +18,13 @@ class Inventory:
         print("Inventory!")
 
 class Item:
-    def __init__(self,id, itemName, value, itemDesc):
+    def __init__(self,id, itemName, value, itemDesc,type):
         print("Item!")
         self.id = id
         self.itemName = itemName
         self.desc = itemDesc
         self.value = value
+        self.type = type
 
     def printItem(self):
         print("ID:" + str(self.id) + "\n" + "itemName:" + self.itemName)
