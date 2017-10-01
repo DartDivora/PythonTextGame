@@ -2,6 +2,7 @@ from Inventory import Item
 
 ItemListTuple = {
     "Boot": (0, 200, "It's a dang boot","equipment"),
+    "Potion": (0, 200, "It's a dang potion","consumable"),
     "Gem": (0, 200, "A shiny gem","misc")
 }
 
