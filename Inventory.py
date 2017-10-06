@@ -14,6 +14,9 @@ class Inventory:
             for y in dictToPrint[x]:
                 print (y,':',dictToPrint[x][y])
 
+    def addItem(item):
+        consumableItems.append(item)
+
     def __init__(self):
         print("Inventory!")
 

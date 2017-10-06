@@ -136,6 +136,8 @@ def fight():
         print("You win!")
         player.money += enemy.money
         player.exp += enemy.exp
+        if(enemy.items):
+            player.inventory.addItem(enemy.items)
         fighting = False
 
 
