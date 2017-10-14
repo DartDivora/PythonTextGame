@@ -10,18 +10,22 @@ class Inventory:
 
     def printDict(self, dictToPrint):
         for x in dictToPrint:
-            print (x)
+            print(x)
             for y in dictToPrint[x]:
-                print (y,':',dictToPrint[x][y])
+                print(y, ':', dictToPrint[x][y])
 
-    def addItem(item):
+    def addConsumableItem(item):
         consumableItems.append(item)
+
+    def addEquipItem(item):
+        equippedItems.append(item)
 
     def __init__(self):
         print("Inventory!")
 
+
 class Item:
-    def __init__(self,id, itemName, value, itemDesc,type):
+    def __init__(self, id, itemName, value, itemDesc, type):
         print("Item!")
         self.id = id
         self.itemName = itemName
