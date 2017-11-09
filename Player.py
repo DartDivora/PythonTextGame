@@ -9,6 +9,9 @@ class Player(Entity):
     previousText = []
     inventory = Inventory()
 
+    def __init__(self,location):
+        self.location = location
+        print("Enemy!")
 
     def goBack(self):
         self.currentText = self.previousText.pop()

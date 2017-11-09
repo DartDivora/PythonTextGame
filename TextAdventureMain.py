@@ -146,7 +146,7 @@ pygame.mixer.music.load('music/Adventure.mp3')
 display_width = getConfig("display_width")
 display_height = getConfig("display_height")
 #currentText = TextAdventureStrings.npc["GameMaster"]
-player = Player()
+player = Player(1)
 enemy = Enemy(1)
 my_sprite = EntitySprite()
 my_group = pygame.sprite.Group(my_sprite)
