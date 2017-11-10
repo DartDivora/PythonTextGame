@@ -14,10 +14,10 @@ class Inventory:
             for y in dictToPrint[x]:
                 print(y, ':', dictToPrint[x][y])
 
-    def addConsumableItem(item):
+    def addConsumableItem(self, item):
         consumableItems.append(item)
 
-    def addEquipItem(item):
+    def addEquipItem(self, item):
         equippedItems.append(item)
 
     def __init__(self):
