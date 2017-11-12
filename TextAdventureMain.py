@@ -68,7 +68,6 @@ def processInput(keyPressed):
         optionPressed(1)
     elif keyPressed == pygame.K_2:
         optionPressed(2)
-
     elif keyPressed == pygame.K_3:
         optionPressed(3)
     elif keyPressed == pygame.K_4:
