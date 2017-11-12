@@ -8,6 +8,8 @@ class Player(Entity):
     currentText = TextAdventureStrings.npc["GameMaster"]
     previousText = []
     inventory = Inventory()
+    persuasion = 1
+    luck = 1
 
     def __init__(self,location):
         self.location = location
